@@ -10,4 +10,8 @@
 
   .well
     #tags.clearfix
-      .tag(ng-repeat="(tag, size) in tags" style="font-size: {{size}}px") {{tag}}
+      .tag(ng-repeat="(tag, size) in data.stats" style="font-size: {{size}}px")
+        span(ng-click="includeInTweet(tag)") {{tag}}
+
+  textarea.form-control(placeholder="Tweet here", ng-model="tweet")
+  button.btn.btn-primary(ng-click="sendTweet()") Tweet
