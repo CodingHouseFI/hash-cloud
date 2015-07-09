@@ -2,6 +2,22 @@
 
 var app = angular.module('sif', ['firebase', 'ui.router']);
 
+app.filter('friendsFilter', function() {
+  return function(users, showFriends) {
+    if (showFriends) {
+      return users;
+    }
+
+    var filteredUsers = {};
+    angular.forEach(users, function(userData, screenName) {
+      if (!userData.following) {
+        filteredUsers[screenName] = userData;
+      }
+    });
+    return filteredUsers;
+  };
+});
+
 app.controller("mainCtrl", function($scope, twitterUser) {
   $scope.tags = [];
   $scope.tweet = "";

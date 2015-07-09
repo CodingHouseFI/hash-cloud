@@ -18,7 +18,7 @@
     .checkbox(ng-show="data.users"): label
       input(type="checkbox", ng-model="showFriends")
       | Show Friends
-    .media(ng-repeat="(screenName, userData) in data.users")
+    .media(ng-repeat="(screenName, userData) in data.users | friendsFilter : showFriends")
       .media-left
         a(target="_blank", href="http://twitter.com/{{userData.screen_name}}")
           img.media-object(ng-src="{{userData.profile_image_url}}")
