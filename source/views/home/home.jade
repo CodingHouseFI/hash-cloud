@@ -8,10 +8,30 @@
       .input-group-btn
         button.btn.btn-default(type="submit") Go
 
-  .well
+  .well.well-sm(ng-show="data.stats")
     #tags.clearfix
       .tag(ng-repeat="(tag, size) in data.stats" style="font-size: {{size}}px")
         span(ng-click="includeInTweet(tag)") {{tag}}
 
-  textarea.form-control(placeholder="Tweet here", ng-model="tweet")
-  button.btn.btn-primary(ng-click="sendTweet()") Tweet
+
+  #tweeters
+    .media(ng-repeat="(_, userData) in data.users")
+      .media-left
+        a(target="_blank", href="http://twitter.com/{{userData.screen_name}}")
+          img.media-object(ng-src="{{userData.profile_image_url}}")
+      .media-body
+        button.btn.btn-info.btn-xs.pull-right Follow
+        h4.media-heading {{userData.name}}
+        .counts
+           span.username
+             strong @{{userData.screen_name}}
+           span.friends {{userData.friends_count}} Friends
+           span.followers {{userData.followers_count}} Followers
+           span.tweets {{userData.statuses_count}} Tweets
+        .description {{userData.description}}
+
+  hr
+  form.form-inline
+    .form-group
+      textarea.form-control(placeholder="Tweet here", ng-model="tweet")
+    button.pull-right.btn.btn-default(ng-click="sendTweet()") Tweet

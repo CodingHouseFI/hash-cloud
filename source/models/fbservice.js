@@ -7,9 +7,9 @@ angular.module('sif')
   this.db = new Firebase(urls.firebaseUrl);
 
   this.db.onAuth(function(authData) {
-    console.log(authData);
     if (authData) {
       fb.currentUser = authData.twitter;
+      console.log("Logged in: ", authData);
     }
   });
 
