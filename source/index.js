@@ -2,12 +2,12 @@
 
 var app = angular.module('sif', ['firebase', 'ui.router']);
 
-app.controller("mainCtrl", function($scope, $http) {
+app.controller("mainCtrl", function($scope, $http, urls) {
   $scope.tags = [];
   $scope.tweet = "";
 
   $scope.search = function() {
-    $http.post("http://localhost:8000/search", { words: $scope.words } )
+    $http.post(urls.apiUrl + "/search", { words: $scope.words } )
     .success(function(data) {
       console.log(data);
       $scope.data = data;
@@ -20,7 +20,7 @@ app.controller("mainCtrl", function($scope, $http) {
   };
 
   $scope.sendTweet = function() {
-    $http.post("http://localhost:8000/tweet", { tweet: $scope.tweet } )
+    $http.post(urls.apiUrl + "/tweet", { tweet: $scope.tweet } )
     .success(function(resp) {
       $scope.tweet = "";
     });

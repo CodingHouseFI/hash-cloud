@@ -18,7 +18,7 @@ angular.module('sif')
   };
 
   this.twitterLogin = function() {
-    this.db.authWithOAuthRedirect("twitter", function(error) {
+    fb.db.authWithOAuthRedirect("twitter", function(error) {
       if (error) {
         console.log("Login Failed!", error);
       }
