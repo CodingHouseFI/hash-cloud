@@ -19,4 +19,9 @@ angular.module('sif')
     return $http.post(urls.apiUrl + "/tweet", data);
   };
 
+  this.follow = function(screenName) {
+    var data = withTokens({ screen_name: screenName });
+    return $http.post(urls.apiUrl + "/follow", data);
+  };
+
 });

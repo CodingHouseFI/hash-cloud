@@ -6,6 +6,19 @@ app.controller("mainCtrl", function($scope, twitterUser) {
   $scope.tags = [];
   $scope.tweet = "";
 
+  $scope.follow = function(screenName) {
+    twitterUser.follow(screenName)
+    .success(function(data) {
+      console.log(data);
+      $scope.data.users[screenName].following = true;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+    return false;
+  };
+
   $scope.search = function() {
     twitterUser.search($scope.words)
     .success(function(data) {
