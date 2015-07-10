@@ -23,13 +23,13 @@
         a(target="_blank", href="http://twitter.com/{{userData.screen_name}}")
           img.media-object(ng-src="{{userData.profile_image_url}}")
       .media-body
-        button.btn.btn-info.btn-xs.pull-right(ng-hide="userData.following", ng-click="follow(screenName)") Follow
-        button.btn.btn-success.btn-xs.pull-right.disabled(disabled=true, ng-show="userData.following") Following
+        button.btn.btn-info.btn-xs.pull-right(ng-hide="userData.following", ng-click="follow(screenName)", ng-style="btnStyle(userData.ratio)") Follow
+        button.btn.btn-default.btn-xs.pull-right.disabled(disabled=true, ng-show="userData.following") Following
         h4.media-heading {{userData.name}}
         .counts
            span.username
              strong @{{userData.screen_name}}
-           span.friends {{userData.friends_count}} Friends
+           span.friends {{userData.friends_count}} Following
            span.followers {{userData.followers_count}} Followers
            span.tweets {{userData.statuses_count}} Tweets
         .description {{userData.description}}
